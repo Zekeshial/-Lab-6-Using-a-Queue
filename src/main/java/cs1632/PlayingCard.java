@@ -6,7 +6,12 @@ public class PlayingCard {
     private int cardValue;
     private int suitValue;
     private PlayingCard() {}
-    public PlayingCard(int cv, int sv) { cardValue = cv; suitValue = sv; }
-    public String cardName() { return CardValues[cardValue] + " " + SuitValues[suitValue]; }
+    public PlayingCard(int cv, int sv) {
+        cardValue = cv;
+        suitValue = sv;
+    }
+    public String cardName() {
+        return CardValues[cardValue] + " " + SuitValues[suitValue];
+    }
     public int playingCardValue() { return cardValue; }
 }
