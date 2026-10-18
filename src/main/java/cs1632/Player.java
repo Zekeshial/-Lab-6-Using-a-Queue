@@ -21,4 +21,8 @@ public class Player {
         hand.add(c);
     }
 
+    public PlayingCard pop() {
+        return hand.pop();
+    }
+
 }
