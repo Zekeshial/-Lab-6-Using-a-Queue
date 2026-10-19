@@ -5,7 +5,7 @@ import java.util.LinkedList;
 public class GameLogic {
     private Player p1;
     private Player p2;
-    public static int roundCounter;
+
 
 
     public GameLogic(Player p1, Player p2) {
@@ -14,8 +14,6 @@ public class GameLogic {
     }
 
     public int turn() {
-        roundCounter++;
-        System.out.println("Round " + roundCounter + " Begins");
         LinkedList<PlayingCard> storedCards = new LinkedList<>();
 
         PlayingCard c1 = null;
@@ -27,7 +25,6 @@ public class GameLogic {
         } else {
             System.out.println("Player 1 is out of cards.");
             System.out.println("Player 2 has won.");
-            roundCounter = 0;
             return 2;
         }
 
@@ -37,7 +34,6 @@ public class GameLogic {
         } else {
             System.out.println("Player 2 is out of cards.");
             System.out.println("Player 1 has won.");
-            roundCounter = 0;
             return 1;
         }
 
@@ -56,7 +52,6 @@ public class GameLogic {
             for (int i = 0; i < 2; i++) {
                 if (p1.getHand().isEmpty() && p2.getHand().isEmpty()) {
                     System.out.println("Player 1 and 2's hands are both empty a draw has occurred");
-                    roundCounter = 0;
                     return 3;
                 }
 
@@ -67,7 +62,6 @@ public class GameLogic {
                 } else {
                     System.out.println("Player 1 is out of cards.");
                     System.out.println("Player 2 has won.");
-                    roundCounter = 0;
                     return 2;
                 }
 
@@ -78,7 +72,6 @@ public class GameLogic {
                 } else {
                     System.out.println("Player 2 is out of cards.");
                     System.out.println("Player 1 has won.");
-                    roundCounter = 0;
                     return 1;
                 }
             }
@@ -94,13 +87,13 @@ public class GameLogic {
         if(p1.getHand().isEmpty()) {
             System.out.println("Player 1 is out of cards.");
             System.out.println("Player 2 has won.");
-            roundCounter = 0;
             return 2;
-        } else {
+        } else if (p2.getHand().isEmpty()) {
             System.out.println("Player 2 is out of cards.");
             System.out.println("Player 1 has won.");
-            roundCounter = 0;
             return 1;
+        } else {
+            return 0;
         }
     }
 
