@@ -30,7 +30,7 @@ public class Main {
         int gameResult = 0;
         int roundCounter = 0;
 
-        while (gameResult <= 0 && roundCounter < 750) {
+        while (gameResult <= 0 && roundCounter < 75000) {
             roundCounter++;
             System.out.println("Round " + roundCounter + " Begins");
             gameResult = game.turn();
