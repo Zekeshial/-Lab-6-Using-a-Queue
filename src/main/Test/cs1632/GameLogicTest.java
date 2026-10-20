@@ -103,8 +103,7 @@ class GameLogicTest {
         assertEquals(expected, actual);
     }
 
-    //This test will fail if the game ends early due to the play not needing to add cards to their hand sense they won.
-    //This test also test if the total number of cards in both players hands is always 52 when you run a total of 100 runs
+    //This test will test to see if the total number of cards in the playing field is always 52 and no extra cards are being added.
     @Test
     void turnTest4() {
         PlayingCardDeck deck = new PlayingCardDeck();
@@ -128,13 +127,13 @@ class GameLogicTest {
         int gameResult = 0;
         int roundCounter = 0;
 
-        while (gameResult <= 0 && roundCounter < 100) {
+        while (gameResult <= 0 && roundCounter < 1000) {
             roundCounter++;
             System.out.println("Round " + roundCounter + " Begins");
             gameResult = game.turn();
             System.out.println("Round " + roundCounter + " has ended.");
         }
-        int actual = p2.getHand().size() + p1.getHand().size();
+        int actual = p2.getHand().size() + p1.getHand().size() + game.getStoredCards().size();
         int expected = 52;
 
         assertEquals(expected, actual);
