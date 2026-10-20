@@ -55,6 +55,8 @@ public class GameLogic {
         } else if (c1.playingCardValue() == c2.playingCardValue()){
             System.out.println("Player 1 and 2's cards are of equal value.\n" +
                     "A war has occurred.");
+            boolean war = true;
+            while(war) {
                 for (int i = 0; i < 2; i++) {
                     if (p1.getHand().isEmpty() && p2.getHand().isEmpty()) {
                         System.out.println("Player 1 and 2's hands are both empty a draw has occurred");
@@ -81,7 +83,45 @@ public class GameLogic {
                         return 1;
                     }
                 }
-                turn();
+
+                if (!p1.getHand().isEmpty()) {
+                    c1 = p1.pop();
+                    System.out.println("Player 1 plays: " + c1.cardName());
+                    storedCards.add(c1);
+                } else {
+                    System.out.println("Player 1 is out of cards.");
+                    System.out.println("Player 2 has won.");
+                    return 2;
+                }
+
+                if (!p2.getHand().isEmpty()) {
+                    c2 = p2.pop();
+                    System.out.println("Player 2 plays: " + c2.cardName());
+                    storedCards.add(c2);
+                } else {
+                    System.out.println("Player 2 is out of cards.");
+                    System.out.println("Player 1 has won.");
+                    return 1;
+                }
+                if (c1.playingCardValue() > c2.playingCardValue()) {
+                    System.out.println("Player 1 has won this round.");
+                    for (PlayingCard c : storedCards) {
+                        p1.addToHand(c);
+                        System.out.println(c.cardName() + " has been added to the player 1's hand.");
+                    }
+                    storedCards.clear();
+                    war = false;
+                } else {
+                    System.out.println("Player 2 has won this round.");
+                    for (PlayingCard c : storedCards) {
+                        p2.addToHand(c);
+                        System.out.println(c.cardName() + " has been added to the player 2's hand.");
+                    }
+                    storedCards.clear();
+                    war = false;
+                }
+            }
+
         } else {
             System.out.println("Player 2 has won this round.");
             for (PlayingCard c : storedCards) {
